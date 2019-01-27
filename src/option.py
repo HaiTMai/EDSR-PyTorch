@@ -19,8 +19,14 @@ parser.add_argument('--seed', type=int, default=1,
                     help='random seed')
 
 # Data specifications
-parser.add_argument('--dir_data', type=str, default='../../../dataset',
+# HaiMai: Change Training Data Location to the EDSR-PyTorch then data_train will get DIV2K
+parser.add_argument('--dir_data', type=str, default='..',
                     help='dataset directory')
+
+# HaiMai: Backup Original Code
+# parser.add_argument('--dir_data', type=str, default='../../../dataset',
+# help='dataset directory')
+
 parser.add_argument('--dir_demo', type=str, default='../test',
                     help='demo image directory')
 parser.add_argument('--data_train', type=str, default='DIV2K',
