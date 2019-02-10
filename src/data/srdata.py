@@ -143,6 +143,8 @@ class SRData(data.Dataset):
                 input_large=self.input_large
             )
             if not self.args.no_augment: lr, hr = common.augment(lr, hr)
+            # HaiMai: Add Noise to Signal
+            lr = common.add_noise(lr, self.args.noise)
         else:
             ih, iw = lr.shape[:2]
             hr = hr[0:ih * scale, 0:iw * scale]

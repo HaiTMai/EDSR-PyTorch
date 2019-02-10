@@ -56,6 +56,10 @@ parser.add_argument('--no_augment', action='store_true',
 parser.add_argument('--model', default='EDSR',
                     help='model name')
 
+# HaiMai: Add Noise to Signal
+parser.add_argument('--noise', type=str, default='.',
+                    help='Gaussian noise std.')
+
 parser.add_argument('--act', type=str, default='relu',
                     help='activation function')
 parser.add_argument('--pre_train', type=str, default='',

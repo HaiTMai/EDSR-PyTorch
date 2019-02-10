@@ -56,6 +56,24 @@ def np2Tensor(*args, rgb_range=255):
 
     return [_np2Tensor(a) for a in args]
 
+# HaiMai: Add Noise to Signal
+def add_noise(x, noise='.'):
+    if noise is not '.':
+        noise_type = noise[0]
+        noise_value = int(noise[1:])
+        if noise_type == 'G':
+            noises = np.random.normal(scale=noise_value, size=x.shape)
+            noises = noises.round()
+        elif noise_type == 'S':
+            noises = np.random.poisson(x * noise_value) / noise_value
+            noises = noises - noises.mean(axis=0).mean(axis=0)
+
+        x_noise = x.astype(np.int16) + noises.astype(np.int16)
+        x_noise = x_noise.clip(0, 255).astype(np.uint8)
+        return x_noise
+    else:
+        return x
+
 def augment(*args, hflip=True, rot=True):
     hflip = hflip and random.random() < 0.5
     vflip = rot and random.random() < 0.5
