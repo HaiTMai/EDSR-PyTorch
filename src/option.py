@@ -20,7 +20,9 @@ parser.add_argument('--seed', type=int, default=1,
 
 # Data specifications
 # HaiMai: Change Training Data Location to the EDSR-PyTorch then data_train will get DIV2K
-parser.add_argument('--dir_data', type=str, default='..',
+# HaiMai: Change the location of Traning data Set. 
+# HaiMai: The DIV2K folder Must be in EDSR-PyTorch folder.
+parser.add_argument('--dir_data', type=str, default='../',
                     help='dataset directory')
 
 # HaiMai: Backup Original Code
