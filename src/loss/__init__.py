@@ -10,6 +10,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import pytorch_msssim
 
 class Loss(nn.modules.loss._Loss):
     def __init__(self, args, ckp):
@@ -37,6 +38,12 @@ class Loss(nn.modules.loss._Loss):
                     args,
                     loss_type
                 )
+            elif loss_type == 'SSIM':
+                loss_function = pytorch_msssim.SSIMLoss()
+            elif loss_type == 'MSSIM':
+                loss_function = pytorch_msssim.MSSSIMLoss()
+            elif loss_type == 'MSSIML1':
+                pass
 
             self.loss.append({
                 'type': loss_type,

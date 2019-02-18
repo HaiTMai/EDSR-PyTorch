@@ -145,6 +145,7 @@ class SRData(data.Dataset):
             if not self.args.no_augment: lr, hr = common.augment(lr, hr)
             # HaiMai: Add Noise to Signal
             lr = common.add_noise(lr, self.args.noise)
+            lr = common.gamma_correction(lr,3)
         else:
             ih, iw = lr.shape[:2]
             hr = hr[0:ih * scale, 0:iw * scale]

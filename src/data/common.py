@@ -1,5 +1,5 @@
 import random
-
+import cv2
 import numpy as np
 import skimage.color as sc
 
@@ -73,6 +73,13 @@ def add_noise(x, noise='.'):
         return x_noise
     else:
         return x
+
+# HaiMai: Add Gammar_Correction
+def gamma_correction(img_arr, gamma=1.0):
+    invGamma=1.0/ gamma
+    table=np.array([((i/255.0)**invGamma)*255
+                   for i in np.arange(0,256)]).astype("uint8")
+    return cv2.LUT(img_arr,table)
 
 def augment(*args, hflip=True, rot=True):
     hflip = hflip and random.random() < 0.5
